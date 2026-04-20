@@ -3,133 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alamanda — Planificador PRO 2026</title>
+<title>Alamanda — Planificador de Cápsulas OI 2026</title>
 <style>
-:root {
-  --navy: #22223B; --mid: #4A4E69; --accent: #C9ADA7;
-  --cream: #F4F1EE; --green: #2D6A4F; --green-bg: #E8F5EE;
-  --amber: #E07A5F; --amber-bg: #FDF0EC; --red: #C1121F; --red-bg: #FDE8EA;
-  --white: #fff; --border: #E0DDD8; --text: #1A1A2E; --gray: #888;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); color: var(--text); font-size: 14px; }
+  :root {
+    --navy:   #22223B;
+    --mid:    #4A4E69;
+    --accent: #C9ADA7;
+    --cream:  #F4F1EE;
+    --green:  #2D6A4F;
+    --green-light: #E8F5EE;
+    --amber:  #E07A5F;
+    --amber-light: #FDF0EC;
+    --white:  #ffffff;
+    --border: #E0DDD8;
+    --text:   #1A1A2E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); color: var(--text); }
 
-/* HEADER */
-header { background: var(--navy); color: white; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; }
-header h1 { font-size: 1.2rem; font-weight: 700; }
-header p  { font-size: .75rem; opacity: .6; margin-top: 3px; }
-.badge { background: var(--accent); color: var(--navy); font-size: .7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 { font-size: 1.25rem; font-weight: 700; }
+  header p  { font-size: .75rem; opacity: .6; margin-top: 3px; }
+  .badge { background: var(--accent); color: var(--navy); font-size: .72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
 
-/* TABS */
-.tabs { background: var(--navy); border-top: 1px solid rgba(255,255,255,.1); display: flex; padding: 0 28px; }
-.tab { padding: 10px 18px; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.5); cursor: pointer; border-bottom: 3px solid transparent; transition: all .2s; }
-.tab.active { color: white; border-bottom-color: var(--accent); }
+  /* TABS */
+  .tabs { background: var(--navy); display: flex; gap: 0; padding: 0 32px; border-top: 1px solid rgba(255,255,255,.1); }
+  .tab-btn { color: rgba(255,255,255,.55); font-size: .8rem; padding: 10px 20px; cursor: pointer; border-bottom: 3px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; }
+  .tab-btn.active { color: white; border-bottom-color: var(--accent); font-weight: 700; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 22px 18px; }
-.tab-content { display: none; }
-.tab-content.active { display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
 
-/* SECTION */
-.section-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+  /* KPI STRIP */
+  .kpi-strip { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi { background: white; border-radius: 10px; padding: 14px 16px; border-left: 4px solid var(--mid); }
+  .kpi.green  { border-left-color: var(--green); }
+  .kpi.amber  { border-left-color: var(--amber); }
+  .kpi.navy   { border-left-color: var(--navy); }
+  .kpi.red    { border-left-color: #c0392b; }
+  .kpi label  { font-size: .68rem; text-transform: uppercase; letter-spacing: .5px; color: #888; }
+  .kpi .val   { font-size: 1.35rem; font-weight: 700; margin-top: 4px; }
+  .kpi .sub   { font-size: .68rem; color: #aaa; margin-top: 2px; }
+  .val.negative { color: #c0392b; }
+  .val.positive { color: var(--green); }
 
-/* KPI STRIP */
-.kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 18px; }
-.kpi { background: white; border-radius: 10px; padding: 14px 16px; border-left: 4px solid var(--mid); }
-.kpi.green { border-left-color: var(--green); }
-.kpi.amber { border-left-color: var(--amber); }
-.kpi.red   { border-left-color: var(--red); }
-.kpi.navy  { border-left-color: var(--navy); }
-.kpi label { font-size: .65rem; text-transform: uppercase; letter-spacing: .5px; color: var(--gray); }
-.kpi .val  { font-size: 1.25rem; font-weight: 700; margin-top: 3px; }
-.kpi .sub  { font-size: .65rem; color: #bbb; margin-top: 2px; }
+  /* GASTOS FIJOS */
+  .gastos-box { background: white; border-radius: 12px; padding: 18px 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .gastos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 12px; }
+  .gasto-item label { font-size: .72rem; color: #666; display: block; margin-bottom: 4px; }
+  .gasto-item input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; font-size: .85rem; color: var(--text); }
+  .gasto-item input:focus { outline: none; border-color: var(--mid); }
 
-/* ALERT */
-.alert { border-radius: 8px; padding: 11px 14px; margin-bottom: 14px; font-size: .8rem; line-height: 1.5; }
-.alert.info  { background: #EEF2FF; border-left: 3px solid var(--mid); }
-.alert.good  { background: var(--green-bg); border-left: 3px solid var(--green); }
-.alert.warn  { background: var(--amber-bg); border-left: 3px solid var(--amber); }
-.alert.danger{ background: var(--red-bg); border-left: 3px solid var(--red); }
+  /* SECTION */
+  .section-title { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
 
-/* GASTOS FIJOS PANEL */
-.gastos-panel { background: white; border-radius: 12px; padding: 18px; margin-bottom: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-.gastos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
-.gasto-item label { font-size: .7rem; color: var(--gray); display: block; margin-bottom: 4px; }
-.gasto-item input[type=number] {
-  width: 100%; padding: 7px 10px; border: 1px solid var(--border);
-  border-radius: 6px; font-size: .82rem; color: var(--text);
-  background: var(--cream);
-}
-.gasto-item input:focus { outline: none; border-color: var(--mid); }
+  /* CAPSULE CARDS */
+  .caps-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr)); gap: 16px; margin-bottom: 24px; }
+  .cap-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .cap-header { color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .cap-header h3 { font-size: .9rem; font-weight: 700; }
+  .cap-header .n { font-size: .68rem; opacity: .65; margin-top: 2px; }
+  .cap-body { padding: 14px 16px; }
 
-/* CAPSULE CARDS */
-.caps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 14px; margin-bottom: 22px; }
-.cap-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-.cap-header { color: white; padding: 12px 14px; display: flex; justify-content: space-between; align-items: flex-start; }
-.cap-header h3 { font-size: .88rem; font-weight: 700; }
-.cap-header .roi-badge { background: rgba(255,255,255,.2); font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 3px; }
-.cap-body { padding: 13px 14px; }
+  .cap-metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .cap-metric { text-align: center; }
+  .cap-metric .lbl { font-size: .62rem; text-transform: uppercase; color: #999; letter-spacing: .3px; }
+  .cap-metric .num { font-size: .92rem; font-weight: 700; color: var(--navy); }
+  .cap-metric .num.green { color: var(--green); }
+  .cap-metric .num.amber { color: var(--amber); }
 
-.cap-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
-.cap-metric .lbl { font-size: .6rem; text-transform: uppercase; color: var(--gray); letter-spacing: .3px; }
-.cap-metric .num { font-size: .85rem; font-weight: 700; color: var(--navy); }
-.cap-metric .num.green { color: var(--green); }
-.cap-metric .num.amber { color: var(--amber); }
-.cap-metric .num.red   { color: var(--red); }
+  .slider-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .slider-row label { font-size: .72rem; color: #666; white-space: nowrap; min-width: 90px; }
+  input[type=range] { flex: 1; accent-color: var(--mid); height: 4px; cursor: pointer; }
+  .slider-val { background: var(--navy); color: white; font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; min-width: 38px; text-align: center; }
 
-/* SLIDERS */
-.slider-row { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
-.slider-row label { font-size: .7rem; color: #666; white-space: nowrap; min-width: 100px; }
-input[type=range] { flex: 1; accent-color: var(--mid); cursor: pointer; }
-.slider-val { background: var(--navy); color: white; font-size: .7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; min-width: 34px; text-align: center; }
+  .cap-result { background: var(--cream); border-radius: 8px; padding: 10px 12px; margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .cap-result .r-lbl { font-size: .62rem; color: #888; text-transform: uppercase; }
+  .cap-result .r-val { font-size: .88rem; font-weight: 700; }
+  .cap-result .r-val.green { color: var(--green); }
+  .cap-result .r-val.red   { color: var(--amber); }
 
-/* RESULT GRID */
-.cap-result { background: var(--cream); border-radius: 8px; padding: 9px 11px; margin-top: 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.r-lbl { font-size: .6rem; color: var(--gray); text-transform: uppercase; }
-.r-val { font-size: .82rem; font-weight: 700; }
-.r-val.green { color: var(--green); }
-.r-val.red   { color: var(--red); }
-.r-val.amber { color: var(--amber); }
+  /* TABLES */
+  .proj-wrap { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: .79rem; }
+  th { background: var(--navy); color: white; padding: 10px 12px; text-align: center; font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .4px; }
+  th:first-child { text-align: left; }
+  td { padding: 9px 12px; text-align: center; border-bottom: 1px solid var(--border); }
+  td:first-child { text-align: left; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #FAFAFA; }
+  .td-green { color: var(--green); font-weight: 700; }
+  .td-amber { color: var(--amber); font-weight: 700; }
+  .td-red   { color: #c0392b; font-weight: 700; }
+  .td-total { background: var(--navy) !important; color: white !important; font-weight: 700; }
 
-/* RISK BAR */
-.risk-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
-.risk-row label { font-size: .68rem; color: #666; min-width: 100px; }
-.risk-bar-wrap { flex: 1; height: 6px; background: #eee; border-radius: 3px; }
-.risk-bar { height: 100%; border-radius: 3px; background: var(--green); transition: width .3s; }
-.risk-pct { font-size: .68rem; font-weight: 700; min-width: 34px; text-align: right; }
+  /* MONTH */
+  .month-proj { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 24px; }
+  .month-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .month-btn { padding: 5px 13px; border: 1px solid var(--border); border-radius: 20px; background: white; cursor: pointer; font-size: .75rem; transition: all .2s; color: var(--text); }
+  .month-btn.active { background: var(--navy); color: white; border-color: var(--navy); font-weight: 700; }
 
-/* TABLE */
-.tbl-wrap { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 20px; overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: .78rem; min-width: 750px; }
-th { background: var(--navy); color: white; padding: 9px 11px; text-align: center; font-size: .68rem; text-transform: uppercase; letter-spacing: .4px; }
-th:first-child { text-align: left; }
-td { padding: 8px 11px; text-align: center; border-bottom: 1px solid var(--border); }
-td:first-child { text-align: left; font-weight: 600; }
-tr:last-child td { border-bottom: none; }
-tr:nth-child(even) td { background: #FAFAFA; }
-.td-green { color: var(--green); font-weight: 700; }
-.td-amber { color: var(--amber); font-weight: 700; }
-.td-red   { color: var(--red); font-weight: 700; }
-.td-total { background: var(--navy) !important; color: white !important; font-weight: 700; }
+  /* ALERTS */
+  .alert { border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: .82rem; }
+  .alert.info  { background: #EEF2FF; border-left: 3px solid var(--mid); }
+  .alert.warn  { background: var(--amber-light); border-left: 3px solid var(--amber); }
+  .alert.good  { background: var(--green-light); border-left: 3px solid var(--green); }
+  .alert.bad   { background: #fdecea; border-left: 3px solid #c0392b; }
 
-/* CASHFLOW */
-.cf-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 18px; }
-.cf-month { background: white; border-radius: 8px; padding: 11px 10px; text-align: center; border-top: 3px solid var(--mid); }
-.cf-month.pico { border-top-color: var(--green); }
-.cf-month.bajo { border-top-color: var(--amber); }
-.cf-month h4 { font-size: .7rem; color: var(--gray); font-weight: 600; }
-.cf-month .cf-val { font-size: .88rem; font-weight: 700; margin: 3px 0; }
-.cf-month .cf-result { font-size: .7rem; font-weight: 700; }
-.cf-month .cf-result.pos { color: var(--green); }
-.cf-month .cf-result.neg { color: var(--red); }
-.cf-month .cf-inv { font-size: .65rem; color: var(--amber); }
+  /* FLUJO CAJA */
+  .flujo-bar-wrap { margin: 6px 0 2px; background: #eee; border-radius: 4px; height: 8px; overflow: hidden; }
+  .flujo-bar { height: 100%; border-radius: 4px; transition: width .4s; }
 
-/* MONTH SELECTOR */
-.month-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-.month-btn { padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; background: white; cursor: pointer; font-size: .75rem; color: var(--text); transition: all .2s; }
-.month-btn.active { background: var(--navy); color: white; border-color: var(--navy); font-weight: 700; }
+  footer { text-align: center; padding: 20px; font-size: .7rem; color: #aaa; }
 
-footer { text-align: center; padding: 18px; font-size: .7rem; color: #bbb; }
-@media(max-width:700px) { .kpi-strip{grid-template-columns:1fr 1fr;} .caps-grid{grid-template-columns:1fr;} .gastos-grid{grid-template-columns:1fr 1fr;} .cf-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width: 700px) {
+    .kpi-strip { grid-template-columns: 1fr 1fr; }
+    .caps-grid { grid-template-columns: 1fr; }
+    .gastos-grid { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -139,427 +138,642 @@ footer { text-align: center; padding: 18px; font-size: .7rem; color: #bbb; }
     <h1>Alamanda — Planificador de Cápsulas PRO</h1>
     <p>Simulá inversión · ganancia · ROI · riesgo de stock · flujo de caja · por cápsula</p>
   </div>
-  <span class="badge">OI 2026 · v2</span>
+  <span class="badge">OI 2026 · v3</span>
 </header>
 
 <div class="tabs">
-  <div class="tab active" onclick="showTab('capsulas')">🎯 Cápsulas</div>
-  <div class="tab" onclick="showTab('decisión')">📊 Decisión</div>
-  <div class="tab" onclick="showTab('cashflow')">💰 Flujo de Caja</div>
-  <div class="tab" onclick="showTab('mes')">📅 Por Mes</div>
+  <button class="tab-btn active" onclick="showTab('capsulas')">🎯 Cápsulas</button>
+  <button class="tab-btn" onclick="showTab('decision')">📊 Decisión</button>
+  <button class="tab-btn" onclick="showTab('flujo')">💰 Flujo de Caja</button>
+  <button class="tab-btn" onclick="showTab('mes')">📅 Por Mes</button>
 </div>
 
-<!-- ═══════════════════════════════ TAB 1: CÁPSULAS ═══════════════════════ -->
-<div id="tab-capsulas" class="tab-content active">
+<!-- TAB: CÁPSULAS -->
+<div class="tab-panel active" id="tab-capsulas">
 <div class="container">
 
   <!-- GASTOS FIJOS -->
-  <div class="section-title">Gastos operativos fijos mensuales</div>
-  <div class="gastos-panel">
-    <div class="alert info">💡 Cargá los gastos fijos reales. Se usan para calcular la <strong>ganancia neta real</strong>, no solo la bruta.</div>
+  <div class="gastos-box">
+    <div class="section-title">💡 Gastos operativos fijos mensuales</div>
+    <div style="font-size:.78rem;color:#666;margin-bottom:4px">Cargá los gastos fijos reales. Se usan para calcular la <strong>ganancia neta real</strong>, no solo la bruta.</div>
     <div class="gastos-grid">
-      <div class="gasto-item"><label>Sueldos empleadas ($)</label><input type="number" id="g-sueldos" value="2000000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Sueldos socias ($)</label><input type="number" id="g-socias" value="8000000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Alquiler / Expensas ($)</label><input type="number" id="g-alquiler" value="600000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Marketing / Pauta ($)</label><input type="number" id="g-marketing" value="500000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Servicios (luz, internet) ($)</label><input type="number" id="g-servicios" value="350000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Logística / Correo ($)</label><input type="number" id="g-logistica" value="400000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Impuestos / Contadora ($)</label><input type="number" id="g-impuestos" value="600000" oninput="recalc()"></div>
-      <div class="gasto-item"><label>Otros ($)</label><input type="number" id="g-otros" value="200000" oninput="recalc()"></div>
+      <div class="gasto-item"><label>Sueldos empleadas ($)</label><input type="number" id="g-sueldos" value="2000000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Sueldos socias ($)</label><input type="number" id="g-socias" value="3000000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Alquiler / Expensas ($)</label><input type="number" id="g-alquiler" value="114000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Marketing / Pauta ($)</label><input type="number" id="g-marketing" value="1420000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Servicios (luz, internet) ($)</label><input type="number" id="g-servicios" value="730000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Logística / Correo ($)</label><input type="number" id="g-logistica" value="1500000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Impuestos / Contadora ($)</label><input type="number" id="g-impuestos" value="1500000" oninput="recalcAll()"></div>
+      <div class="gasto-item"><label>Otros ($)</label><input type="number" id="g-otros" value="500000" oninput="recalcAll()"></div>
     </div>
   </div>
 
-  <!-- KPIs -->
+  <!-- KPI STRIP -->
   <div class="kpi-strip">
-    <div class="kpi navy"><label>Venta proyectada</label><div class="val" id="kpi-ventas">$0</div><div class="sub">precio con impuesto</div></div>
-    <div class="kpi amber"><label>Inversión mercadería</label><div class="val" id="kpi-inversion">$0</div><div class="sub">a comprar / producir</div></div>
-    <div class="kpi green"><label>Ganancia bruta</label><div class="val" id="kpi-gan-bruta">$0</div><div class="sub">antes de gastos fijos</div></div>
-    <div class="kpi green"><label>Ganancia neta</label><div class="val" id="kpi-gan-neta">$0</div><div class="sub">después de gastos fijos</div></div>
-    <div class="kpi red"><label>ROI promedio</label><div class="val" id="kpi-roi">0%</div><div class="sub">ganancia / inversión</div></div>
+    <div class="kpi navy">
+      <label>Venta proyectada</label>
+      <div class="val" id="kpi-ventas">$0</div>
+      <div class="sub">precio con impuesto</div>
+    </div>
+    <div class="kpi amber">
+      <label>Inversión mercadería</label>
+      <div class="val" id="kpi-inversion">$0</div>
+      <div class="sub">a comprar / producir</div>
+    </div>
+    <div class="kpi green">
+      <label>Ganancia bruta</label>
+      <div class="val" id="kpi-bruta">$0</div>
+      <div class="sub">antes de gastos fijos</div>
+    </div>
+    <div class="kpi green">
+      <label>Ganancia neta</label>
+      <div class="val" id="kpi-neta">$0</div>
+      <div class="sub">después de gastos fijos</div>
+    </div>
+    <div class="kpi navy">
+      <label>ROI promedio</label>
+      <div class="val" id="kpi-roi">0%</div>
+      <div class="sub">ganancia / inversión</div>
+    </div>
   </div>
 
-  <div class="alert info" id="main-alert">📌 Ajustá unidades y riesgo de stock por cápsula. Los resultados se actualizan en tiempo real.</div>
+  <div class="alert info" id="main-alert">
+    📌 Ajustá unidades y riesgo de stock por cápsula. Los resultados se actualizan en tiempo real.
+  </div>
 
-  <!-- CAPSULE CARDS -->
   <div class="section-title">Cápsulas — Unidades · Riesgo de stock · Rotación</div>
   <div class="caps-grid" id="caps-grid"></div>
 
 </div>
 </div>
 
-<!-- ═══════════════════════════════ TAB 2: DECISIÓN ══════════════════════ -->
-<div id="tab-decisión" class="tab-content">
+<!-- TAB: DECISIÓN -->
+<div class="tab-panel" id="tab-decision">
 <div class="container">
   <div class="section-title">Ranking por ROI — ¿Dónde poner el capital?</div>
   <div class="alert info">💡 <strong>ROI</strong> = ganancia bruta real / inversión. No es lo mismo ganar mucho que ganar <em>eficientemente</em>. Una cápsula de bajo ticket pero alta rotación puede ser mejor negocio que una de alto ticket.</div>
-  <div class="tbl-wrap"><table id="roi-table">
-    <thead><tr>
-      <th>#</th><th>Cápsula</th><th>Unidades</th>
-      <th>Inversión</th><th>Venta real*</th>
-      <th>Ganancia bruta real*</th><th>Margen</th>
-      <th>ROI</th><th>Días recupero</th><th>Prioridad</th>
-    </tr></thead>
-    <tbody id="roi-tbody"></tbody>
-  </table></div>
-  <div style="font-size:.7rem;color:#aaa;margin-top:-14px;margin-bottom:18px">* "real" = ajustado por % de venta esperada (riesgo de stock)</div>
+  <div class="proj-wrap">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Cápsula</th><th>Unidades</th><th>Inversión</th>
+        <th>Venta real*</th><th>Ganancia bruta real*</th><th>Margen</th><th>ROI</th><th>Días recupero</th><th>Prioridad</th>
+      </tr></thead>
+      <tbody id="roi-tbody"></tbody>
+    </table>
+  </div>
+  <div style="font-size:.72rem;color:#999;margin-top:-16px;margin-bottom:20px">* "real" = ajustado por % de venta esperada (riesgo de stock)</div>
 
   <div class="section-title">Resumen financiero completo</div>
-  <div class="tbl-wrap"><table id="summary-table">
-    <thead><tr>
-      <th>Concepto</th><th>Monto</th><th>% sobre ventas</th>
-    </tr></thead>
-    <tbody id="summary-tbody"></tbody>
-  </table></div>
+  <div class="proj-wrap">
+    <table>
+      <thead><tr><th>Concepto</th><th>Monto</th><th>% sobre ventas</th></tr></thead>
+      <tbody id="resumen-tbody"></tbody>
+    </table>
+  </div>
 </div>
 </div>
 
-<!-- ═══════════════════════════════ TAB 3: CASHFLOW ══════════════════════ -->
-<div id="tab-cashflow" class="tab-content">
+<!-- TAB: FLUJO DE CAJA -->
+<div class="tab-panel" id="tab-flujo">
 <div class="container">
-  <div class="section-title">Flujo de caja proyectado anual</div>
   <div class="alert warn">⚠️ <strong>El timing importa.</strong> Invertís hoy, vendés en semanas, cobrás después. Este flujo muestra cuándo entra y cuándo sale la plata según la rotación de cada cápsula.</div>
-  <div class="cf-grid" id="cf-grid"></div>
   <div class="section-title">Detalle mensual</div>
-  <div class="tbl-wrap"><table id="cf-table">
-    <thead><tr>
-      <th>Mes</th><th>Factor estacional</th><th>Inversión (salida)</th>
-      <th>Ingresos (venta)</th><th>Gastos fijos</th>
-      <th>Resultado mensual</th><th>Acumulado</th>
-    </tr></thead>
-    <tbody id="cf-tbody"></tbody>
-  </table></div>
+  <div class="proj-wrap">
+    <table>
+      <thead><tr>
+        <th>Mes</th><th>Factor estacional</th><th>Inversión (salida)</th>
+        <th>Ingresos (venta)</th><th>Gastos fijos</th><th>Resultado mensual</th><th>Acumulado</th>
+      </tr></thead>
+      <tbody id="flujo-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="section-title" style="margin-top:8px">Proyección por mes</div>
+  <div id="flujo-bars" style="background:white;border-radius:12px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06)"></div>
 </div>
 </div>
 
-<!-- ═══════════════════════════════ TAB 4: MES ═══════════════════════════ -->
-<div id="tab-mes" class="tab-content">
+<!-- TAB: POR MES -->
+<div class="tab-panel" id="tab-mes">
 <div class="container">
   <div class="section-title">Proyección por mes</div>
-  <div class="month-selector" id="month-selector"></div>
-  <div id="month-detail"></div>
+  <div class="month-proj">
+    <div class="month-selector" id="month-selector"></div>
+    <div id="month-detail"></div>
+  </div>
 </div>
 </div>
 
 <footer>Alamanda 2026 · Planificador PRO · Datos: Lista de Precios 2026 + Proyección Financiera Histórica</footer>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────
+// ─── DATOS CORREGIDOS desde Lista de Precios 2026 ───────────────────────────
+// Precio usado: Mercado Pago (col. "Mercado Pago" de la planilla) = precio real de venta
+// Ganancia = precio MP - costo unitario (sin multiplicar, el costo es el real de la planilla)
+// Margen = ganancia / precio MP
+
 const CAPSULAS = [
-  { id:'ribka',    nombre:'OI 2026 · Ribka',       prods:18, costoP:18517, precioP:59081, ganP:25473, margen:.567, defaultU:20, diasRot:25, colorH:'#22223B' },
-  { id:'alamanda', nombre:'Colección Alamanda',     prods:20, costoP:21002, precioP:58952, ganP:25675, margen:.549, defaultU:25, diasRot:30, colorH:'#3D405B' },
-  { id:'jeans',    nombre:'Jeans',                  prods:4,  costoP:32875, precioP:74242, ganP:26518, margen:.447, defaultU:15, diasRot:45, colorH:'#4A4E69' },
-  { id:'remeras',  nombre:'Remeras / Blusas',       prods:15, costoP:10889, precioP:29559, ganP:13454, margen:.548, defaultU:30, diasRot:20, colorH:'#6B6F8C' },
-  { id:'vestidos', nombre:'Vestidos y Polleras',    prods:2,  costoP:20888, precioP:50749, ganP:19711, margen:.477, defaultU:10, diasRot:35, colorH:'#9A8C98' },
-  { id:'camperas', nombre:'Camperas / Chaquetas',   prods:1,  costoP:35000, precioP:79300, ganP:28440, margen:.448, defaultU:8,  diasRot:40, colorH:'#7B5EA7' },
-  { id:'sweaters', nombre:'Sweaters / Buzos',       prods:1,  costoP:17500, precioP:46050, ganP:19340, margen:.525, defaultU:10, diasRot:30, colorH:'#A8DADC', textDark:true },
-  { id:'acces',    nombre:'Accesorios',             prods:6,  costoP:13183, precioP:30075, ganP:11730, margen:.481, defaultU:20, diasRot:15, colorH:'#7B9E87' },
-  { id:'pantal',   nombre:'Pantalones',             prods:2,  costoP:12750, precioP:38582, ganP:18115, margen:.589, defaultU:12, diasRot:25, colorH:'#5C7A6A' },
+  // Datos exactos de Lista de Precios 2026 (PLANILLA_ALAMANDA_4.xlsx)
+  // costoPromedio = promedio costos reales por cápsula
+  // precioPromedio = precio Mercado Pago promedio
+  // gananciaPromedio = Ganancia Bruta planilla (precio antes imp - costo)
+  // margenPromedio = gananciaPromedio / precioPromedio (sobre precio MP)
+  {
+    id: 'ribka',
+    nombre: 'OI 2026 · Ribka',
+    productos: 20,
+    costoPromedio: 19260,
+    precioPromedio: 65237,
+    gananciaPromedio: 24231,
+    margenPromedio: 0.371,
+    color: '#22223B',
+    defaultUnits: 20,
+    nota: 'Camisa Lissa, Chaquetas, Blazers, Pantalones, Remeras · 20 modelos'
+  },
+  {
+    id: 'alamanda',
+    nombre: 'Colección Alamanda',
+    productos: 23,
+    costoPromedio: 20839,
+    precioPromedio: 69073,
+    gananciaPromedio: 25210,
+    margenPromedio: 0.365,
+    color: '#3D405B',
+    defaultUnits: 25,
+    nota: 'Vestidos, polleras, monos, blusas, chaqueta Stone · 23 modelos'
+  },
+  {
+    id: 'jeans',
+    nombre: 'Jeans',
+    productos: 6,
+    costoPromedio: 32400,
+    precioPromedio: 87918,
+    gananciaPromedio: 26212,
+    margenPromedio: 0.298,
+    color: '#4A4E69',
+    defaultUnits: 15,
+    nota: 'Priscila, Lío, Noel, Camilo, Xía, Alba — comprá según demanda confirmada'
+  },
+  {
+    id: 'remeras',
+    nombre: 'Remeras / Blusas',
+    productos: 20,
+    costoPromedio: 10612,
+    precioPromedio: 34570,
+    gananciaPromedio: 12435,
+    margenPromedio: 0.360,
+    color: '#6B6F8C',
+    defaultUnits: 30,
+    nota: 'Alta rotación · 20 modelos (Sorrento, Be Wild, Leopardo, Meraki, blusas)'
+  },
+  {
+    id: 'vestidos',
+    nombre: 'Vestidos y Polleras',
+    productos: 2,
+    costoPromedio: 20888,
+    precioPromedio: 60898,
+    gananciaPromedio: 19711,
+    margenPromedio: 0.324,
+    color: '#9A8C98',
+    defaultUnits: 10,
+    nota: 'Penélope animal print + Vestido Finlandia — chequeá rotación'
+  },
+  {
+    id: 'camperas',
+    nombre: 'Camperas',
+    productos: 3,
+    costoPromedio: 28000,
+    precioPromedio: 77485,
+    gananciaPromedio: 23657,
+    margenPromedio: 0.305,
+    color: '#C9ADA7',
+    defaultUnits: 8,
+    nota: 'Campera Mark + Meraki (Coronados de Gloria, Oid Mortales)'
+  },
+  {
+    id: 'sweaters',
+    nombre: 'Sweaters / Buzos',
+    productos: 5,
+    costoPromedio: 24100,
+    precioPromedio: 73380,
+    gananciaPromedio: 24820,
+    margenPromedio: 0.338,
+    color: '#A8DADC',
+    defaultUnits: 12,
+    nota: 'Gía strass, Thaís, Nidia tachitas, Paz brillos, Buzo Argentina'
+  },
+  {
+    id: 'accesorios',
+    nombre: 'Accesorios / Cintos',
+    productos: 11,
+    costoPromedio: 14691,
+    precioPromedio: 40669,
+    gananciaPromedio: 12422,
+    margenPromedio: 0.305,
+    color: '#7B9E87',
+    defaultUnits: 20,
+    nota: '10 cintos elastizados + caderín · venta cruzada con prendas'
+  },
+  {
+    id: 'pantalones',
+    nombre: 'Pantalones',
+    productos: 3,
+    costoPromedio: 13667,
+    precioPromedio: 48910,
+    gananciaPromedio: 18940,
+    margenPromedio: 0.387,
+    color: '#5C7A6A',
+    defaultUnits: 12,
+    nota: 'Génova $14.5K, Rosalía $11K, Hachi $15.5K — mejor margen de todas'
+  },
 ];
 
-const ESTACIONAL = [
-  {mes:'Enero',f:.65},{mes:'Febrero',f:.60},{mes:'Marzo',f:1.10},
-  {mes:'Abril',f:.95},{mes:'Mayo',f:1.15},{mes:'Junio',f:1.05},
-  {mes:'Julio',f:.85},{mes:'Agosto',f:.80},{mes:'Septiembre',f:1.20},
-  {mes:'Octubre',f:1.10},{mes:'Noviembre',f:1.25},{mes:'Diciembre',f:1.00},
+// Estacionalidad basada en REALES 2025 + 2026 (corregida)
+// 2025 ventas: Ene $13.7M, Feb $12.7M, Mar $37.7M, Abr $27M, May $39.1M, Jun $31.5M
+//              Jul $22.8M, Ago $26.6M, Sep $34.8M, Oct $24M, Nov $33.1M, Dic $29.3M
+// Base = promedio $27.7M = 1.0
+const ESTACIONALIDAD = [
+  { mes: 'Enero',      factor: 0.92 },   // real 2026: $25.4M (fuerte para enero)
+  { mes: 'Febrero',    factor: 0.46 },   // real 2026: $11.9M (el más bajo)
+  { mes: 'Marzo',      factor: 1.36 },   // real 2025: $37.7M
+  { mes: 'Abril',      factor: 0.98 },   // real 2025: $27M
+  { mes: 'Mayo',       factor: 1.41 },   // real 2025: $39.1M — MES PICO
+  { mes: 'Junio',      factor: 1.14 },   // real 2025: $31.5M
+  { mes: 'Julio',      factor: 0.82 },   // real 2025: $22.8M
+  { mes: 'Agosto',     factor: 0.96 },   // real 2025: $26.6M
+  { mes: 'Septiembre', factor: 1.26 },   // real 2025: $34.8M
+  { mes: 'Octubre',    factor: 0.87 },   // real 2025: $24M
+  { mes: 'Noviembre',  factor: 1.19 },   // real 2025: $33.1M
+  { mes: 'Diciembre',  factor: 1.06 },   // real 2025: $29.3M
 ];
 
-const state = {};
-CAPSULAS.forEach(c => {
-  state[c.id] = { units: c.defaultU, ventaPct: 85, diasRot: c.diasRot };
-});
-let selectedMonth = 2; // Marzo default
+// ─── STATE ──────────────────────────────────────────────────────────────────
+const units = {};
+const riesgo = {}; // % de venta esperada (0-100)
+CAPSULAS.forEach(c => { units[c.id] = c.defaultUnits; riesgo[c.id] = 85; });
+let selectedMonth = 4; // Mayo por defecto (mes pico)
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────
-const fmt  = v => '$' + Math.round(v).toLocaleString('es-AR');
-const pct  = v => (v*100).toFixed(1)+'%';
-const gastosFijos = () => ['g-sueldos','g-socias','g-alquiler','g-marketing','g-servicios','g-logistica','g-impuestos','g-otros']
-  .reduce((s,id) => s + (parseFloat(document.getElementById(id)?.value)||0), 0);
+// ─── FORMATTERS ─────────────────────────────────────────────────────────────
+const $f = v => {
+  const neg = v < 0;
+  const s = '$' + Math.abs(Math.round(v)).toLocaleString('es-AR');
+  return neg ? '-' + s : s;
+};
+const pct = v => (v * 100).toFixed(1) + '%';
 
-function capCalc(c) {
-  const s = state[c.id];
-  const vPct = s.ventaPct / 100;
-  const inv       = s.units * c.costoP;
-  const ventaTotal= s.units * c.precioP;
-  const ventaReal = ventaTotal * vPct;
-  const ganBruta  = s.units * c.ganP * vPct;
-  const stockPerd = s.units * c.costoP * (1 - vPct) * 0.6; // pérdida por liquidación
-  const ganReal   = ganBruta - stockPerd;
-  const roi       = inv > 0 ? ganReal / inv : 0;
-  const recupero  = ganReal > 0 ? (inv / (ganReal / s.diasRot)) : 999;
-  return { inv, ventaTotal, ventaReal, ganBruta, ganReal, roi, recupero, stockPerd };
+// ─── GASTOS FIJOS ───────────────────────────────────────────────────────────
+function getGastosFijos() {
+  const ids = ['sueldos','socias','alquiler','marketing','servicios','logistica','impuestos','otros'];
+  return ids.reduce((sum, id) => {
+    const el = document.getElementById('g-' + id);
+    return sum + (el ? parseFloat(el.value) || 0 : 0);
+  }, 0);
 }
 
-// ─── RENDER CARDS ─────────────────────────────────────────────────────────
+// ─── TABS ───────────────────────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  if (name === 'decision') { renderROITable(); renderResumen(); }
+  if (name === 'flujo')    { renderFlujo(); }
+  if (name === 'mes')      { renderMonthSelector(); renderMonthDetail(); }
+}
+
+// ─── RENDER CARDS ───────────────────────────────────────────────────────────
 function renderCards() {
   const grid = document.getElementById('caps-grid');
   grid.innerHTML = '';
-  CAPSULAS.forEach(c => {
-    const s = state[c.id];
-    const r = capCalc(c);
-    const roiClass = r.roi >= .6 ? 'green' : r.roi >= .4 ? 'amber' : 'red';
-    const mClass   = c.margen >= .55 ? 'green' : c.margen < .47 ? 'amber' : '';
-    const textCol  = c.textDark ? '#1A1A2E' : 'white';
+  CAPSULAS.forEach(cap => {
+    const u    = units[cap.id];
+    const r    = riesgo[cap.id];
+    const inv  = u * cap.costoPromedio;
+    const ven  = u * cap.precioPromedio * (r / 100);
+    const gan  = u * cap.gananciaPromedio * (r / 100);
+    const margenClass = cap.margenPromedio >= 0.37 ? 'green' : cap.margenPromedio < 0.31 ? 'amber' : '';
 
-    const div = document.createElement('div');
-    div.className = 'cap-card';
-    div.innerHTML = `
-      <div class="cap-header" style="background:${c.colorH}">
+    const card = document.createElement('div');
+    card.className = 'cap-card';
+    card.innerHTML = `
+      <div class="cap-header" style="background:${cap.color}">
         <div>
-          <h3 style="color:${textCol}">${c.nombre}</h3>
-          <div style="font-size:.68rem;opacity:.7;color:${textCol};margin-top:2px">${c.prods} modelos · ${c.diasRot} días rotación estimada</div>
+          <h3>${cap.nombre}</h3>
+          <div class="n">${cap.productos} modelos · ${cap.nota}</div>
         </div>
-        <div class="roi-badge" style="color:${textCol}">ROI <span id="roi-badge-${c.id}">${pct(r.roi)}</span></div>
       </div>
       <div class="cap-body">
         <div class="cap-metrics">
-          <div class="cap-metric"><div class="lbl">Costo prom.</div><div class="num">${fmt(c.costoP)}</div></div>
-          <div class="cap-metric"><div class="lbl">Precio prom.</div><div class="num">${fmt(c.precioP)}</div></div>
-          <div class="cap-metric"><div class="lbl">Margen</div><div class="num ${mClass}">${pct(c.margen)}</div></div>
-          <div class="cap-metric"><div class="lbl">Recupero</div><div class="num" id="rec-${c.id}">${Math.round(r.recupero)}d</div></div>
+          <div class="cap-metric">
+            <div class="lbl">Costo prom.</div>
+            <div class="num">${$f(cap.costoPromedio)}</div>
+          </div>
+          <div class="cap-metric">
+            <div class="lbl">Precio MP prom.</div>
+            <div class="num">${$f(cap.precioPromedio)}</div>
+          </div>
+          <div class="cap-metric">
+            <div class="lbl">Margen</div>
+            <div class="num ${margenClass}">${pct(cap.margenPromedio)}</div>
+          </div>
         </div>
 
         <div class="slider-row">
           <label>Unidades a vender</label>
-          <input type="range" min="0" max="100" value="${s.units}" oninput="updU('${c.id}',this.value)">
-          <span class="slider-val" id="sv-${c.id}">${s.units}</span>
+          <input type="range" min="0" max="150" value="${u}"
+            oninput="updateUnits('${cap.id}', this.value)">
+          <span class="slider-val" id="sv-${cap.id}">${u}</span>
         </div>
 
-        <div class="risk-row">
+        <div class="slider-row">
           <label>% venta esperada</label>
-          <div class="risk-bar-wrap"><div class="risk-bar" id="rb-${c.id}" style="width:${s.ventaPct}%;background:${s.ventaPct>=80?'#2D6A4F':s.ventaPct>=60?'#E07A5F':'#C1121F'}"></div></div>
-          <input type="range" min="30" max="100" value="${s.ventaPct}" style="width:80px;flex:none" oninput="updV('${c.id}',this.value)">
-          <span class="risk-pct" id="vp-${c.id}">${s.ventaPct}%</span>
+          <input type="range" min="30" max="100" value="${r}"
+            oninput="updateRiesgo('${cap.id}', this.value)">
+          <span class="slider-val" id="sr-${cap.id}" style="background:${r>=80?'#2D6A4F':r>=60?'#4A4E69':'#E07A5F'}">${r}%</span>
         </div>
 
         <div class="cap-result">
-          <div><div class="r-lbl">Inversión</div><div class="r-val amber" id="inv-${c.id}">${fmt(r.inv)}</div></div>
-          <div><div class="r-lbl">Venta real</div><div class="r-val" id="ven-${c.id}">${fmt(r.ventaReal)}</div></div>
-          <div><div class="r-lbl">Gan. bruta real</div><div class="r-val green" id="gan-${c.id}">${fmt(r.ganReal)}</div></div>
+          <div>
+            <div class="r-lbl">Inversión</div>
+            <div class="r-val red" id="inv-${cap.id}">${$f(inv)}</div>
+          </div>
+          <div>
+            <div class="r-lbl">Venta real*</div>
+            <div class="r-val" id="ven-${cap.id}">${$f(ven)}</div>
+          </div>
+          <div>
+            <div class="r-lbl">Ganancia bruta</div>
+            <div class="r-val green" id="gan-${cap.id}">${$f(gan)}</div>
+          </div>
         </div>
-      </div>`;
-    grid.appendChild(div);
+      </div>
+    `;
+    grid.appendChild(card);
   });
 }
 
-function updU(id, val) {
-  state[id].units = parseInt(val);
-  document.getElementById('sv-'+id).textContent = val;
-  refreshCard(id); recalc();
+function updateUnits(id, val) {
+  units[id] = parseInt(val);
+  document.getElementById('sv-' + id).textContent = val;
+  refreshCard(id);
+  recalcAll();
 }
-function updV(id, val) {
-  state[id].ventaPct = parseInt(val);
-  const bar = document.getElementById('rb-'+id);
-  bar.style.width = val+'%';
-  bar.style.background = val>=80?'#2D6A4F':val>=60?'#E07A5F':'#C1121F';
-  document.getElementById('vp-'+id).textContent = val+'%';
-  refreshCard(id); recalc();
+
+function updateRiesgo(id, val) {
+  riesgo[id] = parseInt(val);
+  const el = document.getElementById('sr-' + id);
+  el.textContent = val + '%';
+  const v = parseInt(val);
+  el.style.background = v >= 80 ? '#2D6A4F' : v >= 60 ? '#4A4E69' : '#E07A5F';
+  refreshCard(id);
+  recalcAll();
 }
+
 function refreshCard(id) {
-  const c = CAPSULAS.find(x=>x.id===id);
-  const r = capCalc(c);
-  document.getElementById('inv-'+id).textContent = fmt(r.inv);
-  document.getElementById('ven-'+id).textContent = fmt(r.ventaReal);
-  document.getElementById('gan-'+id).textContent = fmt(r.ganReal);
-  document.getElementById('roi-badge-'+id).textContent = pct(r.roi);
-  document.getElementById('rec-'+id).textContent = Math.round(r.recupero)+'d';
+  const cap = CAPSULAS.find(c => c.id === id);
+  const u = units[id], r = riesgo[id];
+  const inv = u * cap.costoPromedio;
+  const ven = u * cap.precioPromedio * (r / 100);
+  const gan = u * cap.gananciaPromedio * (r / 100);
+  document.getElementById('inv-' + id).textContent = $f(inv);
+  document.getElementById('ven-' + id).textContent = $f(ven);
+  document.getElementById('gan-' + id).textContent = $f(gan);
 }
 
-// ─── RECALC ALL ───────────────────────────────────────────────────────────
-function recalc() {
-  let totInv=0, totVenReal=0, totGanBruta=0, totGanReal=0;
+// ─── KPIs ───────────────────────────────────────────────────────────────────
+function recalcAll() {
+  let totalVentas = 0, totalInversion = 0, totalGanancia = 0;
   CAPSULAS.forEach(c => {
-    const r = capCalc(c);
-    totInv      += r.inv;
-    totVenReal  += r.ventaReal;
-    totGanBruta += r.ganBruta;
-    totGanReal  += r.ganReal;
+    const u = units[c.id], r = riesgo[c.id] / 100;
+    totalVentas    += u * c.precioPromedio * r;
+    totalInversion += u * c.costoPromedio;
+    totalGanancia  += u * c.gananciaPromedio * r;
   });
-  const gf = gastosFijos();
-  const ganNeta = totGanReal - gf;
-  const roi = totInv > 0 ? totGanReal / totInv : 0;
+  const gastos = getGastosFijos();
+  const neta   = totalGanancia - gastos;
+  const roi    = totalInversion > 0 ? totalGanancia / totalInversion : 0;
+  const margen = totalVentas > 0 ? totalGanancia / totalVentas : 0;
 
-  document.getElementById('kpi-ventas').textContent   = fmt(totVenReal);
-  document.getElementById('kpi-inversion').textContent= fmt(totInv);
-  document.getElementById('kpi-gan-bruta').textContent= fmt(totGanBruta);
-  document.getElementById('kpi-gan-neta').textContent = fmt(ganNeta);
-  document.getElementById('kpi-roi').textContent      = pct(roi);
+  document.getElementById('kpi-ventas').textContent    = $f(totalVentas);
+  document.getElementById('kpi-inversion').textContent = $f(totalInversion);
+  document.getElementById('kpi-bruta').textContent     = $f(totalGanancia);
 
+  const netaEl = document.getElementById('kpi-neta');
+  netaEl.textContent = $f(neta);
+  netaEl.className   = 'val ' + (neta >= 0 ? 'positive' : 'negative');
+
+  document.getElementById('kpi-roi').textContent = pct(roi);
+
+  // Alert
   const al = document.getElementById('main-alert');
-  if (ganNeta > 0 && roi >= .5) {
-    al.className='alert good';
-    al.innerHTML=`✅ Negocio rentable. Ganancia neta <strong>${fmt(ganNeta)}</strong> · ROI <strong>${pct(roi)}</strong>. Inversión necesaria: <strong>${fmt(totInv)}</strong>.`;
-  } else if (ganNeta > 0) {
-    al.className='alert info';
-    al.innerHTML=`📊 Ganancia neta positiva: <strong>${fmt(ganNeta)}</strong>. ROI mejorable (${pct(roi)}). Revisá mix o reducí gastos fijos.`;
+  if (neta >= 0 && margen >= 0.37) {
+    al.className = 'alert good';
+    al.innerHTML = `✅ Margen bruto ${pct(margen)} — sólido. Ganancia neta después de gastos fijos: <strong>${$f(neta)}</strong>. Inversión total: <strong>${$f(totalInversion)}</strong>.`;
+  } else if (neta >= 0) {
+    al.className = 'alert info';
+    al.innerHTML = `📊 Margen bruto ${pct(margen)}. Ganancia neta: <strong>${$f(neta)}</strong>. Revisá el mix. Pantalones (38.7%) y Ribka (37.1%) son las cápsulas con mejor margen.`;
   } else {
-    al.className='alert danger';
-    al.innerHTML=`🚨 Ganancia neta <strong>negativa: ${fmt(ganNeta)}</strong>. Los gastos fijos (${fmt(gf)}) superan la ganancia bruta real. Aumentá ventas o reducí gastos.`;
+    al.className = 'alert bad';
+    al.innerHTML = `⚠️ Ganancia neta negativa: <strong>${$f(neta)}</strong>. Los gastos fijos ($${Math.round(gastos/1e6*10)/10}M) superan la ganancia bruta. Aumentá unidades o reducí gastos.`;
   }
-
-  renderROITable();
-  renderSummary();
-  renderCashflow();
-  renderMonthDetail();
 }
 
-// ─── ROI TABLE ────────────────────────────────────────────────────────────
+// ─── ROI TABLE ───────────────────────────────────────────────────────────────
 function renderROITable() {
-  const rows = CAPSULAS.map(c => ({ c, r: capCalc(c) }))
-    .filter(x => x.r.inv > 0)
-    .sort((a,b) => b.r.roi - a.r.roi);
+  const rows = CAPSULAS.map(c => {
+    const u = units[c.id], r = riesgo[c.id] / 100;
+    const inv = u * c.costoPromedio;
+    const ven = u * c.precioPromedio * r;
+    const gan = u * c.gananciaPromedio * r;
+    const roi = inv > 0 ? gan / inv : 0;
+    const dias = roi > 0 ? Math.round(30 / roi) : 999;
+    return { nombre: c.nombre, u, inv, ven, gan, margen: c.margenPromedio, roi, dias, r };
+  }).sort((a, b) => b.roi - a.roi);
 
-  document.getElementById('roi-tbody').innerHTML = rows.map(({c,r},i) => {
-    const prioridad = r.roi>=.7?'🟢 Máxima':r.roi>=.5?'🟢 Alta':r.roi>=.35?'🟡 Media':'🔴 Revisar';
-    const roiCls = r.roi>=.5?'td-green':r.roi>=.35?'td-amber':'td-red';
+  const tbody = document.getElementById('roi-tbody');
+  tbody.innerHTML = rows.map((r, i) => {
+    const prioridad = r.roi >= 0.5 ? '🟢 Alta' : r.roi >= 0.3 ? '🟡 Media' : '🔴 Baja';
+    const mc = r.margen >= 0.37 ? 'td-green' : r.margen < 0.31 ? 'td-amber' : '';
+    const rc = r.roi >= 0.5 ? 'td-green' : r.roi < 0.3 ? 'td-red' : '';
     return `<tr>
-      <td>${i+1}</td>
-      <td>${c.nombre}</td>
-      <td>${state[c.id].units}</td>
-      <td class="td-amber">${fmt(r.inv)}</td>
-      <td>${fmt(r.ventaReal)}</td>
-      <td class="td-green">${fmt(r.ganReal)}</td>
-      <td class="${c.margen>=.55?'td-green':c.margen<.47?'td-amber':''}">${pct(c.margen)}</td>
-      <td class="${roiCls}">${pct(r.roi)}</td>
-      <td>${Math.round(r.recupero)} días</td>
+      <td style="color:#999;font-weight:400">${i+1}</td>
+      <td>${r.nombre}</td>
+      <td>${r.u} <span style="font-size:.7rem;color:#999">(${Math.round(r.r*100)}% venta)</span></td>
+      <td style="color:#E07A5F;font-weight:700">${$f(r.inv)}</td>
+      <td>${$f(r.ven)}</td>
+      <td style="color:#2D6A4F;font-weight:700">${$f(r.gan)}</td>
+      <td class="${mc}">${pct(r.margen)}</td>
+      <td class="${rc}">${pct(r.roi)}</td>
+      <td>${r.dias < 100 ? r.dias + 'd' : '—'}</td>
       <td>${prioridad}</td>
     </tr>`;
   }).join('');
 }
 
-// ─── SUMMARY TABLE ────────────────────────────────────────────────────────
-function renderSummary() {
-  let totVen=0, totInv=0, totGanB=0, totGanR=0;
-  CAPSULAS.forEach(c => { const r=capCalc(c); totVen+=r.ventaReal; totInv+=r.inv; totGanB+=r.ganBruta; totGanR+=r.ganReal; });
-  const gf = gastosFijos();
-  const ganNeta = totGanR - gf;
-  const rows = [
-    ['Venta proyectada (real, ajustada por stock)', totVen, '100%'],
-    ['Inversión en mercadería', totInv, pct(totInv/totVen)],
-    ['Ganancia bruta (ajustada por riesgo stock)', totGanR, pct(totGanR/totVen)],
-    ['— Gastos fijos totales', -gf, pct(gf/totVen)],
-    ['GANANCIA NETA', ganNeta, pct(ganNeta/totVen)],
+// ─── RESUMEN FINANCIERO ───────────────────────────────────────────────────────
+function renderResumen() {
+  let totalVentas = 0, totalInversion = 0, totalGanancia = 0;
+  CAPSULAS.forEach(c => {
+    const u = units[c.id], r = riesgo[c.id] / 100;
+    totalVentas    += u * c.precioPromedio * r;
+    totalInversion += u * c.costoPromedio;
+    totalGanancia  += u * c.gananciaPromedio * r;
+  });
+  const gastos   = getGastosFijos();
+  const neta     = totalGanancia - gastos;
+  const margen   = totalVentas > 0 ? totalGanancia / totalVentas : 0;
+  const margenNeto = totalVentas > 0 ? neta / totalVentas : 0;
+  const roi      = totalInversion > 0 ? totalGanancia / totalInversion : 0;
+
+  const conceptos = [
+    ['Ventas totales (precio MP)', totalVentas, 1, ''],
+    ['(-) Costo mercadería vendida', -totalInversion, totalVentas > 0 ? totalInversion/totalVentas : 0, 'td-amber'],
+    ['= Ganancia bruta', totalGanancia, margen, 'td-green'],
+    ['(-) Gastos operativos fijos', -gastos, totalVentas > 0 ? gastos/totalVentas : 0, ''],
+    ['= Ganancia neta', neta, margenNeto, neta >= 0 ? 'td-green' : 'td-red'],
+    ['ROI sobre inversión', null, roi, roi >= 0.5 ? 'td-green' : 'td-amber'],
   ];
-  document.getElementById('summary-tbody').innerHTML = rows.map((r,i) => {
-    const isTot = i===4;
-    const cls = isTot ? 'td-total' : (i===3?'td-red':i===1?'td-amber':'');
+
+  const tbody = document.getElementById('resumen-tbody');
+  tbody.innerHTML = conceptos.map(([lbl, monto, p, cls]) => `<tr>
+    <td style="font-weight:600">${lbl}</td>
+    <td class="${cls}">${monto !== null ? $f(monto) : '—'}</td>
+    <td class="${cls}">${p !== null ? pct(p) : '—'}</td>
+  </tr>`).join('');
+}
+
+// ─── FLUJO DE CAJA ────────────────────────────────────────────────────────────
+function renderFlujo() {
+  let totalVentas = 0, totalInversion = 0, totalGanancia = 0;
+  CAPSULAS.forEach(c => {
+    const u = units[c.id], r = riesgo[c.id] / 100;
+    totalVentas    += u * c.precioPromedio * r;
+    totalInversion += u * c.costoPromedio;
+    totalGanancia  += u * c.gananciaPromedio * r;
+  });
+  const gastosFijos = getGastosFijos();
+
+  const tbody = document.getElementById('flujo-tbody');
+  let acumulado = 0;
+  const maxVenta = Math.max(...ESTACIONALIDAD.map(m => totalVentas * m.factor));
+
+  tbody.innerHTML = ESTACIONALIDAD.map(m => {
+    const inv = totalInversion * m.factor;
+    const ven = totalVentas * m.factor;
+    const gan = ven - inv;
+    const resultado = gan - gastosFijos;
+    acumulado += resultado;
+    const resClass = resultado >= 0 ? 'td-green' : 'td-red';
+    const acuClass = acumulado >= 0 ? 'td-green' : 'td-red';
+    const factorLabel = m.factor >= 1.3 ? '🔥 Pico' : m.factor >= 1.1 ? '📈 Alto' : m.factor <= 0.6 ? '❄️ Bajo' : '➡️ Normal';
     return `<tr>
-      <td class="${isTot?'td-total':''}" style="${isTot?'':''}"><strong>${r[0]}</strong></td>
-      <td class="${cls}">${fmt(r[1])}</td>
-      <td class="${cls}">${r[2]}</td>
+      <td>${m.mes}</td>
+      <td style="font-size:.75rem">${factorLabel} ×${m.factor}</td>
+      <td style="color:#E07A5F;font-weight:600">${$f(-inv)}</td>
+      <td>${$f(ven)}</td>
+      <td style="color:#666">${$f(-gastosFijos)}</td>
+      <td class="${resClass}">${$f(resultado)}</td>
+      <td class="${acuClass}">${$f(acumulado)}</td>
     </tr>`;
   }).join('');
-}
 
-// ─── CASHFLOW ─────────────────────────────────────────────────────────────
-function renderCashflow() {
-  let totInv=0, totVenReal=0, totGanR=0;
-  CAPSULAS.forEach(c => { const r=capCalc(c); totInv+=r.inv; totVenReal+=r.ventaReal; totGanR+=r.ganReal; });
-  const gf = gastosFijos();
-
-  let acum = 0;
-  const cfGrid = document.getElementById('cf-grid');
-  const cfTbody = document.getElementById('cf-tbody');
-  cfGrid.innerHTML = '';
-  cfTbody.innerHTML = '';
-
-  ESTACIONAL.forEach(m => {
-    const inv    = totInv * m.f;
-    const ventas = totVenReal * m.f;
-    const gastos = gf;
-    const result = ventas - inv - gastos;
-    acum += result;
-    const cls = m.f>=1.1?'pico':m.f<=0.75?'bajo':'';
-
-    cfGrid.innerHTML += `<div class="cf-month ${cls}">
-      <h4>${m.mes}</h4>
-      <div class="cf-val">${fmt(ventas)}</div>
-      <div class="cf-inv">Inv: ${fmt(inv)}</div>
-      <div class="cf-result ${result>=0?'pos':'neg'}">${result>=0?'+':''}${fmt(result)}</div>
+  // Barras
+  acumulado = 0;
+  const barsHtml = ESTACIONALIDAD.map(m => {
+    const ven = totalVentas * m.factor;
+    const resultado = (ven - totalInversion * m.factor) - gastosFijos;
+    acumulado += resultado;
+    const barW = Math.min(100, Math.round(ven / maxVenta * 100));
+    const color = resultado >= 0 ? '#2D6A4F' : '#E07A5F';
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:80px;font-size:.75rem;font-weight:600;color:#444">${m.mes}</div>
+      <div style="flex:1">
+        <div class="flujo-bar-wrap"><div class="flujo-bar" style="width:${barW}%;background:${color}"></div></div>
+      </div>
+      <div style="width:110px;font-size:.75rem;font-weight:700;color:${color};text-align:right">${$f(resultado)}</div>
     </div>`;
-
-    cfTbody.innerHTML += `<tr>
-      <td>${m.mes}</td>
-      <td>${m.f>=1.1?'🔥':m.f<=0.75?'❄️':'📊'} ×${m.f}</td>
-      <td class="td-amber">${fmt(inv)}</td>
-      <td>${fmt(ventas)}</td>
-      <td>${fmt(gastos)}</td>
-      <td class="${result>=0?'td-green':'td-red'}">${result>=0?'+':''}${fmt(result)}</td>
-      <td class="${acum>=0?'td-green':'td-red'}">${fmt(acum)}</td>
-    </tr>`;
-  });
+  }).join('');
+  document.getElementById('flujo-bars').innerHTML = barsHtml;
 }
 
-// ─── MONTH DETAIL ─────────────────────────────────────────────────────────
+// ─── POR MES ──────────────────────────────────────────────────────────────────
 function renderMonthSelector() {
-  document.getElementById('month-selector').innerHTML = ESTACIONAL.map((m,i) =>
-    `<button class="month-btn ${i===selectedMonth?'active':''}" onclick="selMonth(${i})">${m.mes}</button>`
+  const sel = document.getElementById('month-selector');
+  sel.innerHTML = ESTACIONALIDAD.map((m, i) =>
+    `<button class="month-btn ${i === selectedMonth ? 'active' : ''}"
+      onclick="selectMonth(${i})">${m.mes}</button>`
   ).join('');
 }
-function selMonth(i) { selectedMonth=i; renderMonthSelector(); renderMonthDetail(); }
+
+function selectMonth(idx) {
+  selectedMonth = idx;
+  renderMonthSelector();
+  renderMonthDetail();
+}
 
 function renderMonthDetail() {
-  const m = ESTACIONAL[selectedMonth];
-  const gf = gastosFijos();
-  let totInv=0, totVen=0, totGan=0;
+  const m = ESTACIONALIDAD[selectedMonth];
+  const detail = document.getElementById('month-detail');
+  const gastos = getGastosFijos();
 
+  let totalVentas = 0, totalInversion = 0, totalGanancia = 0;
   const rows = CAPSULAS.map(c => {
-    const s = state[c.id];
-    const u = Math.round(s.units * m.f);
-    const vPct = s.ventaPct/100;
-    const inv = u * c.costoP;
-    const ven = u * c.precioP * vPct;
-    const gan = u * c.ganP * vPct;
-    totInv+=inv; totVen+=ven; totGan+=gan;
-    return {nombre:c.nombre, u, inv, ven, gan, margen:c.margen};
-  }).filter(r=>r.u>0);
+    const u   = Math.round(units[c.id] * m.factor);
+    const r   = riesgo[c.id] / 100;
+    const inv = u * c.costoPromedio;
+    const ven = u * c.precioPromedio * r;
+    const gan = u * c.gananciaPromedio * r;
+    totalVentas    += ven;
+    totalInversion += inv;
+    totalGanancia  += gan;
+    return { nombre: c.nombre, u, inv, ven, gan, margen: c.margenPromedio };
+  }).filter(r => r.u > 0);
 
-  const ganNeta = totGan - gf;
-  const factorLabel = m.f>=1.1?`🔥 Mes alto (×${m.f})`:m.f<=0.75?`❄️ Mes bajo (×${m.f})`:`📊 Mes normal (×${m.f})`;
+  const neta = totalGanancia - gastos;
+  const totalMargen = totalVentas > 0 ? totalGanancia / totalVentas : 0;
+  const factorLabel = m.factor >= 1.3 ? `🔥 Mes pico (×${m.factor})` : m.factor >= 1.1 ? `📈 Mes alto (×${m.factor})` : m.factor <= 0.6 ? `❄️ Mes bajo (×${m.factor})` : `➡️ Mes normal (×${m.factor})`;
 
-  document.getElementById('month-detail').innerHTML = `
-    <div class="alert ${m.f>=1.1?'good':m.f<=0.75?'warn':'info'}">
-      <strong>${m.mes} 2026</strong> — ${factorLabel} · Unidades ajustadas por estacionalidad histórica 2024-2025
+  detail.innerHTML = `
+    <div class="alert ${m.factor >= 1.2 ? 'good' : m.factor <= 0.65 ? 'warn' : 'info'}" style="margin-bottom:12px">
+      <strong>${m.mes}</strong> — ${factorLabel} · Unidades ajustadas por estacionalidad histórica 2025.
     </div>
-    <div class="kpi-strip" style="grid-template-columns:repeat(4,1fr)">
-      <div class="kpi navy"><label>Venta ${m.mes}</label><div class="val" style="font-size:1rem">${fmt(totVen)}</div></div>
-      <div class="kpi amber"><label>Inversión ${m.mes}</label><div class="val" style="font-size:1rem">${fmt(totInv)}</div></div>
-      <div class="kpi green"><label>Gan. bruta ${m.mes}</label><div class="val" style="font-size:1rem">${fmt(totGan)}</div></div>
-      <div class="${ganNeta>=0?'kpi green':'kpi red'}"><label>Gan. neta ${m.mes}</label><div class="val" style="font-size:1rem">${fmt(ganNeta)}</div></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px">
+      <div class="kpi navy"><label>Venta estimada</label><div class="val" style="font-size:1.1rem">${$f(totalVentas)}</div></div>
+      <div class="kpi amber"><label>Inversión</label><div class="val" style="font-size:1.1rem">${$f(totalInversion)}</div></div>
+      <div class="kpi green"><label>Ganancia bruta</label><div class="val" style="font-size:1.1rem">${$f(totalGanancia)}</div></div>
+      <div class="kpi ${neta>=0?'green':'red'}"><label>Ganancia neta</label><div class="val ${neta>=0?'positive':'negative'}" style="font-size:1.1rem">${$f(neta)}</div></div>
     </div>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Cápsula</th><th>Unidades ${m.mes}</th><th>Inversión</th><th>Venta real</th><th>Ganancia</th><th>Margen</th></tr></thead>
+    <div class="proj-wrap">
+    <table>
+      <thead><tr>
+        <th>Cápsula</th><th>Unidades ${m.mes}</th><th>Inversión</th><th>Venta real</th><th>Ganancia</th><th>Margen</th>
+      </tr></thead>
       <tbody>
-        ${rows.map(r=>`<tr>
-          <td>${r.nombre}</td><td>${r.u}</td>
-          <td class="td-amber">${fmt(r.inv)}</td>
-          <td>${fmt(r.ven)}</td>
-          <td class="td-green">${fmt(r.gan)}</td>
-          <td class="${r.margen>=.55?'td-green':r.margen<.47?'td-amber':''}">${pct(r.margen)}</td>
+        ${rows.map(r => `<tr>
+          <td>${r.nombre}</td>
+          <td>${r.u}</td>
+          <td style="color:#E07A5F;font-weight:600">${$f(r.inv)}</td>
+          <td>${$f(r.ven)}</td>
+          <td style="color:#2D6A4F;font-weight:600">${$f(r.gan)}</td>
+          <td class="${r.margen>=0.37?'td-green':r.margen<0.31?'td-amber':''}">${pct(r.margen)}</td>
         </tr>`).join('')}
         <tr>
           <td class="td-total">TOTAL ${m.mes.toUpperCase()}</td>
           <td class="td-total">${rows.reduce((a,r)=>a+r.u,0)}</td>
-          <td class="td-total">${fmt(totInv)}</td>
-          <td class="td-total">${fmt(totVen)}</td>
-          <td class="td-total">${fmt(totGan)}</td>
-          <td class="td-total">${pct(totVen>0?totGan/totVen:0)}</td>
+          <td class="td-total">${$f(totalInversion)}</td>
+          <td class="td-total">${$f(totalVentas)}</td>
+          <td class="td-total">${$f(totalGanancia)}</td>
+          <td class="td-total">${pct(totalMargen)}</td>
         </tr>
       </tbody>
-    </table></div>
-    <div style="font-size:.7rem;color:#aaa;margin-top:-14px">Ganancia neta después de gastos fijos (${fmt(gf)}): <strong style="color:${ganNeta>=0?'#2D6A4F':'#C1121F'}">${fmt(ganNeta)}</strong></div>`;
+    </table>
+    </div>
+  `;
 }
 
-// ─── TABS ─────────────────────────────────────────────────────────────────
-function showTab(name) {
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  event.target.classList.add('active');
-}
-
-// ─── INIT ─────────────────────────────────────────────────────────────────
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 renderCards();
-recalc();
+recalcAll();
 renderMonthSelector();
 renderMonthDetail();
 </script>
